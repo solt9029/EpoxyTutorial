@@ -22,9 +22,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
-
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         binding.setAdapter(controller.getAdapter());
+        binding.setViewModel(viewModel);
 
         viewModel.list.observe(this, new Observer<List<Item>>() {
             @Override

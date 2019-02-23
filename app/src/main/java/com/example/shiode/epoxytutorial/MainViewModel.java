@@ -17,4 +17,14 @@ public class MainViewModel extends ViewModel {
 
         list.postValue(data);
     }
+
+    public void addList() {
+        List<Item> data = new ArrayList<>();
+        if (list.getValue() != null) {
+            data.addAll(list.getValue());
+        }
+        data.add(new Item("added!"));
+
+        list.postValue(data);
+    }
 }
