@@ -1,27 +1,36 @@
 package com.example.shiode.epoxytutorial;
 
-import android.support.v7.app.AppCompatActivity;
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
+import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 
-import java.util.ArrayList;
+import com.example.shiode.epoxytutorial.databinding.ActivityMainBinding;
+
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    MainController controller = new MainController();
+    private MainController controller = new MainController();
+    private ActivityMainBinding binding;
+    private MainViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        List<Item> list = new ArrayList<>();
-        list.add(new Item("aaa"));
-        list.add(new Item("bbb"));
-        list.add(new Item("ccc"));
+        viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
 
-        // TODO: should use data binding here.
-        ((RecyclerView)findViewById(R.id.recyclerView)).setAdapter(controller.getAdapter());
-        controller.setData(list);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        binding.setAdapter(controller.getAdapter());
+
+        viewModel.list.observe(this, new Observer<List<Item>>() {
+            @Override
+            public void onChanged(@Nullable List<Item> list) {
+                controller.setData(list);
+            }
+        });
     }
 }
