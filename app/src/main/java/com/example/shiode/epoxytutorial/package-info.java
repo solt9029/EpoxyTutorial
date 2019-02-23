@@ -1,4 +1,4 @@
-@EpoxyDataBindingLayouts({R.layout.item})
+@EpoxyDataBindingLayouts({R.layout.item, R.layout.progress_bar})
 @PackageModelViewConfig(rClass = R.class)
 @PackageEpoxyConfig(
         requireAbstractModels = true,
@@ -8,5 +8,5 @@
 package com.example.shiode.epoxytutorial;
 
 import com.airbnb.epoxy.EpoxyDataBindingLayouts;
-import com.airbnb.epoxy.PackageModelViewConfig;
 import com.airbnb.epoxy.PackageEpoxyConfig;
+import com.airbnb.epoxy.PackageModelViewConfig;

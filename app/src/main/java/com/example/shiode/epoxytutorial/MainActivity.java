@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         viewModel.list.observe(this, new Observer<List<Item>>() {
             @Override
             public void onChanged(@Nullable List<Item> list) {
-                controller.setData(list);
+                controller.setData(list, true);
             }
         });
     }
